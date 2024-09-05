@@ -141,7 +141,7 @@ subgraph tdf[Telemetry Data Flow]
             oc-proc --> oc-otlp
         end
 
-        oc-prom -->|"http://localhost:9090/api/v1/otlp"| pr-sc
+        oc-prom -->|"localhost:9090/api/v1/otlp"| pr-sc
         oc-otlp -->|gRPC| ja-col
 
         subgraph pr[Prometheus]
@@ -155,7 +155,7 @@ subgraph tdf[Telemetry Data Flow]
         end
 
         pr-b{{"Browser<br/>Prometheus UI"}}
-        pr-http ---->|"http://localhost:9090/graph"| pr-b
+        pr-http ---->|"localhost:9090/graph"| pr-b
 
         subgraph ja[Jaeger]
             style ja fill:#60d0e4,color:black;
@@ -175,14 +175,14 @@ subgraph tdf[Telemetry Data Flow]
             gr-srv --> gr-http
         end
 
-        pr-http --> |"http://localhost:9090/api"| gr-srv
-        ja-http --> |"http://localhost:16686/api"| gr-srv
+        pr-http --> |"localhost:9090/api"| gr-srv
+        ja-http --> |"localhost:16686/api"| gr-srv
 
         ja-b{{"Browser<br/>Jaeger UI"}}
-        ja-http ---->|"http://localhost:16686/search"| ja-b
+        ja-http ---->|"localhost:16686/search"| ja-b
 
         gr-b{{"Browser<br/>Grafana UI"}}
-        gr-http -->|"http://localhost:3000/dashboard"| gr-b
+        gr-http -->|"localhost:3000/dashboard"| gr-b
     end
 end
 ```
